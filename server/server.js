@@ -11,7 +11,7 @@ const public_path= path.join(__dirname, "../public");
 const {generateMessage, generateLocationMessage} = require("./utils/message");
 const {isRealString} = require("./utils/validation");
 const {requireRole} = require("./utils/role");
-mongoose.connect("mongodb://user:password@ds117128.mlab.com:17128/ruralhack");
+mongoose.connect("mongodb://user:password@ds117888.mlab.com:17888/women-hack");
 const {Users} = require("./utils/users");
 var User=require("../models/user.js");
 var passport=require("passport");
