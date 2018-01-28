@@ -14,17 +14,17 @@ router.post("/register", function(req, res){
     console.log(req.body.role);
     //var role =String(req.body.role);
     var role;
-     if(req.body.role.farmer!=undefined)
+     if(req.body.role.seeker!=undefined)
             {
-                role="farmer";
+                role="seeker";
             }
-            else if(req.body.role.agrodealer!=undefined)
+            else if(req.body.role.mentor!=undefined)
             {
-                role="agrodealer";
+                role="mentor";
             }
             else 
             {
-                role="crop-buyer";
+                role="ngo";
             }
     var newUser = new User({email: req.body.email,username: req.body.username,role:role});
     console.log(newUser.role);
@@ -36,17 +36,17 @@ router.post("/register", function(req, res){
         }
         passport.authenticate("local")(req, res, function(){
             //req.flash("success","Welcome to YelpCamp "+ req.body.username);
-            if(req.body.role.farmer!=undefined)
+            if(req.body.role.seeker!=undefined)
             {
-                res.send("heya farmer here");
+                res.send("heya seeker here");
             }
-            else if(req.body.role.agrodealer!=undefined)
+            else if(req.body.role.mentor!=undefined)
             {
                 res.send("heya agro here");
             }
             else 
             {
-                res.send("heya crop-buyer here");
+                res.send("heya ngo here");
             }
           // res.redirect("/login"); 
         });
@@ -57,10 +57,10 @@ router.post("/register", function(req, res){
 router.get("/login",function(req,res){
     res.render("login");
 });
-router.get("/farmer",function(req,res){
-     res.send("heya farmer here");
+router.get("/seeker",function(req,res){
+     res.send("heya seeker here");
 });
-router.get("/agrodealer",function(req,res){
+router.get("/mentor",function(req,res){
      res.send("heya agro here");
 });
 router.post("/login", passport.authenticate("local", 
@@ -68,13 +68,13 @@ router.post("/login", passport.authenticate("local",
         failureRedirect: "/login"
     }), function(req, res){
             console.log(req.user.role );
-             if (req.user && req.user.role == "farmer")
-                 res.redirect('/farmer');
+             if (req.user && req.user.role == "seeker")
+                 res.redirect('/seeker');
              else
-                res.redirect("/agrodealer");
+                res.redirect("/mentor");
         
 });
-// router.post("/login",requireRole("agrodealer"), passport.authenticate("local", 
+// router.post("/login",requireRole("mentor"), passport.authenticate("local", 
 //     {
 //         failureRedirect: "/login"
 //     }),function(req, res){
@@ -89,14 +89,14 @@ router.post("/login", passport.authenticate("local",
 //     if (!user) return res.status(404).json({message: 'Something went wrong, please try again.'});
 
 //     else {
-//         if(requireRole("farmer")){
-//             res.redirect('/farmer');
+//         if(requireRole("seeker")){
+//             res.redirect('/seeker');
 //         }
-//         else if(requireRole("agrodealer")){
-//             res.redirect('/farmer');
+//         else if(requireRole("mentor")){
+//             res.redirect('/seeker');
 //         }
 //         else{
-//             res.redirect('/crop-buyer');
+//             res.redirect('/ngo');
 //         }
 //     }
 // }));

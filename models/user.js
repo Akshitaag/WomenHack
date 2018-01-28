@@ -14,7 +14,7 @@ var userSchema= new mongoose.Schema({
     },
     role: {
         type: String,
-        enum: ["farmer", "agrodealer", "cropbuyer"]
+        enum: ["seeker", "mentor", "ngo"]
     },
      password: {
         type: String
