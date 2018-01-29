@@ -8,15 +8,21 @@ var userSchema= new mongoose.Schema({
         unique: true,
         required: true
     },
-    username: {
-        type: String,
-        required: true
+    pincode: {
+        type: String
     },
     role: {
         type: String,
         enum: ["seeker", "mentor", "ngo"]
     },
      password: {
+        type: String
+    },
+    username: {
+        type: String
+    },
+
+     phone: {
         type: String
     }
 });
