@@ -7,6 +7,7 @@ const socketIO=require('socket.io');
 var mongoose=require("mongoose");
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
+
 const public_path= path.join(__dirname, "../public");
 const {generateMessage, generateLocationMessage} = require("./utils/message");
 const {isRealString} = require("./utils/validation");

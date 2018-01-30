@@ -6,10 +6,16 @@ var Mentor=require("../models/mentor.js");
 var Ngo=require("../models/ngo.js");
 var passport=require("passport");
 const {requireRole} = require("../server/utils/role");
+var fs = require("fs");
+var contents = fs.readFileSync("inspired.json");
+var data = JSON.parse(contents);
 //-------------
 //AUTH ROUTES
 //-----------
 //  REGISTER
+router.get("/awareness",function(req,res){
+     res.render("awareness.ejs",{data1:data});
+});
 router.get("/register",function(req,res){
     res.render("register.ejs");
 });

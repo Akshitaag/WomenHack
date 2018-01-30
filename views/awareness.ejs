@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Awareness</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css" >
+    
+
+</head>
+<script type="text/javascript" src="/js/awareness.js"></script>
+<body>
+   <div class="ui fixed inverted menu">
+            <div class="ui container">
+                    <div class="header item"><a href="/"><i class="certificate icon"></i>Awsar</a></div>
+                <a href="/etihaad.html" class="item" style="float: right">Etihaad</a>
+                <a href="/ngo.html" class="item" style="float: right">Find ngo's near you</a>
+                
+                <a href="/getinspired.html" class="item" style="float: right">Survivor stories</a>
+               
+                <a href="/awareness.html" class="item" style="float: right">Awareness</a>
+                <a href="/contribute.html" class="item"  style="float: right">Contribute</a>
+                 <div class="collapse navbar-collapse nav navbar-nav navbar-right">
+                        <a href="/login" class="item"  style="float: right">Login</a>
+                        <a href="/register" class="item"  style="float: right">Signup</a>
+                
+              </div></div>
+              </div>
+<div class="ui main text container segment">
+    <div class="ui huge header">Awareness</div>
+    <div class="ui top attached segment">
+<div class="ui divided items">
+  
+    <% data1.forEach(function(news){%>
+    <div class="item">
+       <div class="image">
+            <%if(news.imagessrc){%>
+             <img src=" <%= news.imagessrc %> ">
+           <% }%>
+           
+       </div>
+        <div class="content">
+             <div class="header"> <a href="<%= news.pageshref %>"> <%= news.tag%> </a></div>
+             <div class="meta">
+                  <span> <%= news.data %> </span>
+            
+        </div>
+        <div class="description">
+              <p> <%- news.extract.substring(0,50) %>.... </p>
+              <div class="extra">
+                   <a href="<%= news.pageshref %>">Read More</a>
+              </div>
+              
+        </div>
+      
+       </div>
+    </div>
+
+<% }); %>
+</div>
+</div>
+</div>
+</body>
+</html>
