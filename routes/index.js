@@ -16,9 +16,18 @@ var data = JSON.parse(contents);
 router.get("/awareness",function(req,res){
      res.render("awareness.ejs",{data1:data});
 });
+// mentor details
+router.get("/mentordetails",function(req,res){
+    console.log(req);
+    res.render("mentordetails.ejs");
+});
+router.post("/mentordetails",function(req,res){
+    console.log(req);
+});
 router.get("/register",function(req,res){
     res.render("register.ejs");
 });
+
 // router.post("/register", function(req, res){
 //     console.log(req.body.role);
 //      var newUser = new User({email: req.body.email,username:req.body.username,pincode: req.body.pin,role:role,phone:req.body.phone});
