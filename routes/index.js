@@ -1,6 +1,7 @@
 var express = require("express");
 var router  = express.Router();
 var User=require("../models/user.js");
+var Blog=require("../models/blog.js");
 var Seeker=require("../models/seeker.js");
 var Mentor=require("../models/mentor.js");
 var Ngo=require("../models/ngo.js");
@@ -231,6 +232,95 @@ router.post("/login", passport.authenticate("local",
                     res.redirect("/ngo");
             }
         
+});
+
+
+
+
+router.get("/story", function(req, res){
+            res.redirect("/blogs");
+
+    });
+
+router.get("/blogs", function(req, res){
+    Blog.find({}, function(err, blogs){
+        if(err)
+        {
+            console.log(err);
+        }
+        else
+         res.render("blogs", {blogs: blogs});
+        });
+   
+    });
+
+router.put("/blogs/:id", function(req, res){
+    Blog.findByIdAndUpdate(req.params.id, req.body.blog, function(err, foundBlog){
+        if(err)
+        console.log("Error has occured");
+        else
+        res.redirect("/blogs/"+req.params.id);
+    });
+});    
+    
+router.get("/blogs/:id/edit", function(req, res){
+    Blog.findById(req.params.id, function(err, foundBlog){
+        if(err)
+        {
+            console.log("Error has been made");
+        }
+        else
+        {
+             res.render("edit", {blog: foundBlog});
+        }
+    });
+});
+
+
+router.get("/blogs/new", function(req, res){
+    res.render("new");
+    
+});
+
+router.get("/blogs/:id", function(req, res){
+    Blog.findById(req.params.id, function(err, foundBlog){
+        if(err)
+        {
+            console.log("Error has been made! :/ ");
+        }
+        else
+        {
+            res.render("show", {blog: foundBlog});
+        }
+    });
+});
+
+
+router.post("/blogs", function(req, res){
+    Blog.create(req.body.blog, function(err, newBlog){
+        if(err)
+        {
+            res.redirect("/blogs/new");
+        }
+        else
+        res.redirect("/blogs");
+    });
+    
+});
+
+router.delete("/blogs/:id", function(req, res){
+    Blog.findByIdAndRemove(req.params.id, function(err){
+        if(!err)
+        {
+            res.redirect("/blogs");
+        }
+        else
+        {
+            console.log("Error occured");
+            
+        }
+        
+    });
 });
 
 //LOGIN 
