@@ -18,13 +18,56 @@ router.get("/awareness",function(req,res){
      res.render("awareness.ejs",{data1:data});
 });
 // mentor details
-router.get("/mentordetails",function(req,res){
-    console.log(req);
-    res.render("mentordetails.ejs");
+router.get("/mentordetails/:id",function(req,res){
+    res.render("mentordetails.ejs",{id:req.params.id});
 });
-router.post("/mentordetails",function(req,res){
-    console.log(req);
+router.post("/mentordetails/:id",function(req,res){
+   // console.log(req.body);
+    var id =req.params.id ;
+    //console.log(id);
+      Mentor.findById(id).exec(function(err,mfound){
+       if(err)
+       {
+           console.log(err);
+       }
+       else
+       {
+           // console.log("found ");
+            console.log("user");
+            //console.log(ufound);
+            profession=req.body.profession;
+            adhaar=req.body.adhaar;
+            contribute=req.body.contribute;
+        var newdata={ username :mfound.username, _id:mfound._id,email:mfound.email,phone:mfound.phone,__v:mfound.__v,profession:profession,adhaar:adhaar,contribute:contribute};
+         Mentor.updateOne({_id:mfound._id}, newdata, function(err, res) {
+            if(err)
+            {
+                 console.log(err);
+            }
+            else
+            {
+                 console.log("updated");
+            }
+        //      Mentor.findByIdAndUpdate(req.params.id,{$set: newData},function(err,updated)
+        // {
+        //     if(err)
+        //     {
+        //         console.log(err);
+        //     }
+        //     else
+        //     {
+        //         console.log("here");
+        //         console.log(mentor);
+                
+        //       //  console.log(mentor);
+                
+        //     }
+        // });
+        });
+     }
+    });
 });
+
 router.get("/register",function(req,res){
     res.render("register.ejs");
 });
@@ -196,7 +239,7 @@ router.get("/mentor",function(req,res){
        {
             console.log("here");
             console.log(mentor);
-            res.render("mentorProf", {mentor: mentor[0]});
+            res.render("mentorProf", {mentor: mentor[0] , id: mentor[0]._id});
        }
    });
    // res.render("agroProf", {mentor: req.user});

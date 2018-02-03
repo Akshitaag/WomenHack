@@ -13,6 +13,18 @@ var mentorSchema= new mongoose.Schema({
      phone: {
         type: String
     },
+    profession:
+    {
+        type: String
+    },
+    adhaar:
+    {
+        type:String
+    },
+    contribute:
+    {
+        type: String
+    },
     username: {
       id:{ 
          type:mongoose.Schema.Types.ObjectId,
