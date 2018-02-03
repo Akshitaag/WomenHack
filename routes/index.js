@@ -70,6 +70,46 @@ router.post("/mentordetails/:id",function(req,res){
      }
     });
 });
+//seeker details
+
+router.get("/seekerdetails/:id",function(req,res){
+        console.log(req.params.id);
+
+    res.render("seekerdetails.ejs",{id:req.params.id});
+});
+router.post("/seekerdetails/:id",function(req,res){
+   // console.log(req.body);
+    var id =req.params.id ;
+    //console.log(id);
+    console.log(req.body);
+      Seeker.findById(id).exec(function(err,sfound){
+       if(err)
+       {
+           console.log(err);
+       }
+       else
+       {
+           // console.log("found ");
+            console.log("user");
+            //console.log(ufound);
+            problem=req.body.problem;
+            helper=req.body.helper;
+            share=req.body.share;
+        var newdata={ username :sfound.username, _id:sfound._id,email:sfound.email,phone:sfound.phone,__v:sfound.__v,problem:problem,helper:helper,share:share};
+         Seeker.updateOne({_id:sfound._id}, newdata, function(err, res) {
+            if(err)
+            {
+                 console.log(err);
+            }
+            else
+            {
+                 console.log("updated");
+            }
+      
+        });
+     }
+    });
+});
 
 router.get("/register",function(req,res){
     res.render("register.ejs");
@@ -223,7 +263,7 @@ router.get("/seeker",function(req,res){
        {
             console.log("here");
             console.log(allseekers);
-            res.render("seekerProf", {seeker: allseekers[0]});
+            res.render("seekerProf", {seeker: allseekers[0],id:allseekers[0]._id});
        }
    });
       

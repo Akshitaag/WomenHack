@@ -13,6 +13,18 @@ var seekerSchema= new mongoose.Schema({
      phone: {
         type: String
     },
+     problem:
+    {
+        type: String
+    },
+    helper:
+    {
+        type:String
+    },
+    share:
+    {
+        type: String
+    },
     username: {
       id:{ 
          type:mongoose.Schema.Types.ObjectId,

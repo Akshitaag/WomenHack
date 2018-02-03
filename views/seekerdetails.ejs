@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+  <meta charset="utf-8">
+  <title>Chat App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css" >
+  <style >
+    .data{
+      background-image: url("http://cdn.blackenterprise.com/wp-content/blogs.dir/1/files/2013/02/lesbian-startups-mentors-women-business.jpg");
+      margin-top: 20px; width: 100%; height:800px;
+       background-size: cover;
+    }
+  </style>
+</head>
+
+<body >
+   <div class="ui fixed inverted menu">
+            <div class="ui container">
+                <div class="header item"><a href="/"><i class="certificate icon"></i>Awsar</a></div>
+                <a href="/etihaad.html" class="item" style="float: right">Etihaad</a>
+                <a href="/ngo.html" class="item" style="float: right">Find ngo's near you</a>
+                <a href="/report.html" class="item" style="float: right">Report</a>
+                <a href="/story" class="item" style="float: right">Survivor stories</a>
+                <a href="/chatTab.html" class="item"  style="float: right">Want to Chat?</a>
+                <a href="/awareness.html" class="item" style="float: right">Awareness</a>
+                <a href="/contribute.html" class="item"  style="float: right">Contribute</a>
+                <a href="/seekerdetails" class="item" style="float: right">Details</a>
+                 <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                      
+                         <a href="/logout" class="item"  style="float: right">Logout</a>
+                </ul>
+            </div>
+            </div></div>
+<div class="container data">
+    <div class="container row">
+         <div style="width:30% ; margin: 40px auto;">
+          <h3>Details!</h3>  
+          
+    
+    <form action="/seekerdetails/<%=id%>" method="POST" class="form-horizontal">
+     <div class="form-group">
+     <!-- health financial domestic violence abuse depression -->
+     <!-- lawyer /social/ doctor /anylst /psychatrist -->
+    <STRONG>Your problem?</STRONG><br/>
+    <INPUT TYPE="radio" NAME="problem" VALUE="health">Health
+    <INPUT TYPE="radio" NAME="problem" VALUE="employment">Employment
+    <INPUT TYPE="radio" NAME="problem" VALUE="domesticviolence">Domestic Violence
+    <INPUT TYPE="radio" NAME="problem" VALUE="abuse">Abuse
+    <INPUT TYPE="radio" NAME="problem" VALUE="depression">Depression
+    <INPUT TYPE="radio" NAME="problem" VALUE="others">Others
+    </div>
+     <div class="form-group">
+    <STRONG>Who would you like to connect with?</STRONG><br/>
+    <INPUT TYPE="radio" NAME="helper" VALUE="lawyer">Lawyer
+    <INPUT TYPE="radio" NAME="helper" VALUE="socialworker">Social Worker
+    <INPUT TYPE="radio" NAME="helper" VALUE="doctor">Doctor
+    
+    </div>
+    <div class="form-group">
+         <label for="share"  class="col-sm-9 control-label">Anything you would like to share:</label>
+           <div class="col-sm-12 ">
+             <textarea name="share" cols="40" rows="5"></textarea>
+             </div>
+    </div>
+     <div class="form-group ">
+           <div class="col-sm-offset-3 col-sm-9">
+        <button class="btn  btn-primary "> Submit</button>
+        </div>
+    </div>
+</form>
+</div>
+</div>
+</div>
+</body>
+</html>
