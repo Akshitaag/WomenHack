@@ -5,22 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
   <link rel="stylesheet" type="text/css" href="/css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css" >
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
     
 
 </head>
 <body>
 	 <div class="ui fixed inverted menu">
             <div class="ui container">
-                <div class="header item"><a href="/"><i class="certificate icon"></i>KrishY</a></div>
-                <a href="/buy.html" class="item"  style="float: right">Buy</a>
-                <a href="/sell.html" class="item" style="float: right">Sell</a>
-                <a href="/laborers.html" class="item" style="float: right">Find Laborers</a>
-                <a href="/report.html" class="item" style="float: right">Report</a>
-                <a href="/cropSustainability.html" class="item" style="float: right">Am I growing the right crop?</a>
-                <a href="/chatTab.html" class="item"  style="float: right">Want to Chat?</a>
-                <a href="/awareness.html" class="item" style="float: right">Awareness</a>
+                <div class="header item"><a href="/"><i class="certificate icon"></i>Awsar</a></div>
+                <a href="/etihaad.html" class="item" style="float: right">Etihaad</a>
+                <a href="/ngo.html" class="item" style="float: right">Find ngo's near you</a>
                 
-              </div></div>
-              <h1 style="margin-top: 100px">Contribute Page</h1>
-</body>
+                <a href="/story" class="item" style="float: right">Survivor stories</a>
+               
+                <a href="/awareness" class="item" style="float: right">Awareness</a>
+                <a href="/contribute.html" class="item"  style="float: right">Contribute</a>
+                 <div class="collapse navbar-collapse nav navbar-nav navbar-right">
+                        <a href="/login" class="item"  style="float: right">Login</a>
+                        <a href="/register" class="item"  style="float: right">Signup</a>
+                         
+                
+            </div>
+              </div>
+            </div>
+             <div class="panel panel-primary" style="width:50%;margin:0 auto; margin-top:10%">
+<div class="panel-heading"><h3>We need your help ! </h3></div>
+<div class="panel-body" style="height:40%; text-align:center;" >
+<p class="bg-info" id="msg"></p>
+ <form class="form-horizontal" role="form" id="paypalForm" method="post" action="/paynow">
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="amount">Amount:</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="amount" placeholder="Enter Amount" required="required" value="10">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="currency">Currency:</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="currency" placeholder="Enter Currency Type" value="USD" required="required">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="description">Description:</label>
+    <div class="col-sm-10">
+      <textarea class="form-control" name="description" placeholder="Enter Description">My First Payment</textarea>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button id="send" class="btn btn-primary btn-lg" type="submit">
+         <span class="glyphicon glyphicon-send" ></span> Pay Now
+      </button>
+    </div>
+  </div>
+</form>
+</div>
+</div>
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+             </body>
 </html>

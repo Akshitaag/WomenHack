@@ -1,4 +1,5 @@
 var express = require("express");
+var paypal = require('paypal-rest-sdk');
 var router  = express.Router();
 var User=require("../models/user.js");
 var Blog=require("../models/blog.js");
@@ -11,7 +12,6 @@ var fs = require("fs");
 var contents = fs.readFileSync("inspired.json");
 var data = JSON.parse(contents);
 var  methodOverride=require("method-override");
-
 router.use(methodOverride("_method"));
 //-------------
 //AUTH ROUTES
@@ -417,6 +417,73 @@ router.delete("/blogs/:id", function(req, res){
 //     }
 // }));
 //LOGOUT
+//Paypal routes!
+var config = {
+  "port" : 3000,
+  "api" : {
+    "host" : "api.sandbox.paypal.com",
+    "port" : "",            
+    "client_id" : "AcR0oUd9ThfVSRbKvZyHSiq6Eo0XWAlH8-Vz4elfHdUMbbGmHEX5loJy_hxdhPXL9sSrtkj5XpYji4mM",  // your paypal application client id
+    "client_secret" : "EOuz5kkID1QRY88lxQHXDa-4NubvJdKVGbkFeDS10TZ7PpMbwmfMiwmQoMpVVhTGeXXTYrSKWfDwHv2o" // your paypal application secret id
+  }
+}
+ 
+paypal.configure(config.api);
+ 
+// Page will display after payment has beed transfered successfully
+router.get('/success', function(req, res) {
+  res.send("Payment transfered successfully.");
+});
+ 
+// Page will display when you canceled the transaction 
+router.get('/cancel', function(req, res) {
+  res.send("Payment canceled successfully.");
+});
+ 
+ 
+router.post('/paynow', function(req, res) {
+   // paypal payment configuration.
+  var payment = {
+  "intent": "sale",
+  "payer": {
+    "payment_method": "paypal"
+  },
+  "redirect_urls": {
+    "return_url": "http://localhost:3000/success",
+    "cancel_url": "http://localhost:3000/cancel"
+  },
+  "transactions": [{
+    "amount": {
+      "total":parseInt(req.body.amount),
+      "currency":  req.body.currency
+    },
+    "description": req.body.description
+  }]
+};
+ 
+  paypal.payment.create(payment, function (error, payment) {
+  if (error) {
+    console.log(error);
+  } else {
+    if(payment.payer.payment_method === 'paypal') {
+      req.paymentId = payment.id;
+      var redirectUrl;
+      console.log(payment);
+      for(var i=0; i < payment.links.length; i++) {
+        var link = payment.links[i];
+        if (link.method === 'REDIRECT') {
+          redirectUrl = link.href;
+        }
+      }
+      res.redirect(redirectUrl);
+    }
+  }
+});
+});
+
+
+
+
 router.get("/logout",function(req,res){
    req.logout(); 
   // req.flash("success","Logged You Out!!");
