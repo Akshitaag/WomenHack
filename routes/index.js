@@ -9,7 +9,7 @@ var Ngo=require("../models/ngo.js");
 var passport=require("passport");
 const {requireRole} = require("../server/utils/role");
 var fs = require("fs");
-var contents = fs.readFileSync("inspired.json");
+var contents = fs.readFileSync("inspired1.json");
 var data = JSON.parse(contents);
 var  methodOverride=require("method-override");
 router.use(methodOverride("_method"));
