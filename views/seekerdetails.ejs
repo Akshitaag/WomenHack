@@ -4,10 +4,10 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Chat App</title>
+  <title>Details</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
   <link rel="stylesheet" type="text/css" href="/css/style.css">
-  
+  <link href="https://fonts.googleapis.com/css?family=Fontdiner+Swanky|Monoton|Oranienbaum|Oregano" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css" >
   <style >
@@ -24,10 +24,9 @@
             <div class="ui container">
                 <div class="header item"><a href="/"><i class="certificate icon"></i>Awsar</a></div>
                 <a href="/etihaad.html" class="item" style="float: right">Etihaad</a>
-                            <a href="/report.html" class="item" style="float: right">Report</a>
                 <a href="/story" class="item" style="float: right">Survivor stories</a>
                 <a href="/chatTab.html" class="item"  style="float: right">Want to Chat?</a>
-                <a href="/awareness.html" class="item" style="float: right">Awareness</a>
+                <a href="/awareness" class="item" style="float: right">Awareness</a>
                 <a href="/contribute.html" class="item"  style="float: right">Contribute</a>
                 <a href="/seekerdetails" class="item" style="float: right">Details</a>
                  <div class="collapse navbar-collapse">
@@ -40,26 +39,26 @@
 <div class="container data">
     <div class="container row">
          <div style="width:30% ; margin: 40px auto;">
-          <h3>Details!</h3>  
+          <h3 style="font-family: 'Oranienbaum'; font-size: 50px">Details!</h3>  
           
     
     <form action="/seekerdetails/<%=id%>" method="POST" class="form-horizontal">
      <div class="form-group">
      <!-- health financial domestic violence abuse depression -->
-     <!-- lawyer /social/ doctor /anylst /psychatrist -->
-    <STRONG>Your problem?</STRONG><br/>
-    <INPUT TYPE="radio" NAME="problem" VALUE="health">Health
-    <INPUT TYPE="radio" NAME="problem" VALUE="employment">Employment
-    <INPUT TYPE="radio" NAME="problem" VALUE="domesticviolence">Domestic Violence
-    <INPUT TYPE="radio" NAME="problem" VALUE="abuse">Abuse
-    <INPUT TYPE="radio" NAME="problem" VALUE="depression">Depression
-    <INPUT TYPE="radio" NAME="problem" VALUE="others">Others
+     <!-- lawyer /social/ doctor /anylst /psychatrist --> 
+    <STRONG style="font-family: 'Oranienbaum';"> <span  style="font-family: 'Oranienbaum'; font-size: 20px ">Your problem?</span></STRONG> <br/>
+    <INPUT TYPE="radio" NAME="problem" VALUE="health" > <span style="font-family: 'Oranienbaum' ">Health </span><br>
+    <INPUT TYPE="radio" NAME="problem" VALUE="employment" > <span style="font-family: 'Oranienbaum' ">Employment </span>  <br>
+    <INPUT TYPE="radio" NAME="problem" VALUE="domesticviolence" > <span style="font-family: 'Oranienbaum' ">Domestic Violence </span> <br>
+    <INPUT TYPE="radio" NAME="problem" VALUE="abuse" > <span style="font-family: 'Oranienbaum' ">Abuse </span><br>
+    <INPUT TYPE="radio" NAME="problem" VALUE="depression" > <span style="font-family: 'Oranienbaum' ">Depression  </span><br>
+    <INPUT TYPE="radio" NAME="problem" VALUE="others" > <span style="font-family: 'Oranienbaum' ">Others </span> <br>
     </div>
      <div class="form-group">
-    <STRONG>Who would you like to connect with?</STRONG><br/>
-    <INPUT TYPE="radio" NAME="helper" VALUE="lawyer">Lawyer
-    <INPUT TYPE="radio" NAME="helper" VALUE="socialworker">Social Worker
-    <INPUT TYPE="radio" NAME="helper" VALUE="doctor">Doctor
+    <STRONG > <span style="font-family: 'Oranienbaum'; font-size: 20px ">Who would you like to connect with?</span></STRONG><br/>
+    <INPUT TYPE="radio" NAME="helper" VALUE="lawyer" > <span style="font-family: 'Oranienbaum' ">Lawyer  </span><br>
+    <INPUT TYPE="radio" NAME="helper" VALUE="socialworker" > <span style="font-family: 'Oranienbaum' ">Social Worker </span><br>
+    <INPUT TYPE="radio" NAME="helper" VALUE="doctor" > <span style="font-family: 'Oranienbaum' ">Doctor </span> <br>
     
     </div>
     <div class="form-group">
@@ -70,7 +69,7 @@
     </div>
      <div class="form-group ">
            <div class="col-sm-offset-3 col-sm-9">
-        <button class="btn  btn-primary "> Submit</button>
+        <button class="ui button pink "> Submit</button>
         </div>
     </div>
 </form>
