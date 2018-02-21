@@ -8,14 +8,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
   <link rel="stylesheet" type="text/css" href="/css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css" >
-    
+     <link href="https://fonts.googleapis.com/css?family=Fontdiner+Swanky|Monoton|Oranienbaum|Oregano" rel="stylesheet">
+ 
    <style >
+   body
+   {
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP5Rw9Wcnvz5wG3dAF_SUdr_qYhWqCjApziUmosXW8VP-3nhozOg");
+     background-size: cover;
+     height: 100%;}
     .data{
-      background-image: url("https://media-exp2.licdn.com/mpr/mpr/p/2/005/0b5/15c/1e5e253.png");
       margin-top: 20px; width: 100%; height:800px;
-       background-size: cover;
+      
        font-weight: bold;
        color: black;
+    }
+      h1,h2,h3,p{
+font-family: 'Oregano', cursive;
+font-size: 20px;
     }
   </style>
 </head>
@@ -25,12 +34,9 @@
             <div class="ui container">
                 <div class="header item"><a href="/"><i class="certificate icon"></i>Awsar</a></div>
                 <a href="/etihaad.html" class="item" style="float: right">Etihaad</a>
-            
-                <a href="/report.html" class="item" style="float: right">Report</a>
                 <a href="/story" class="item" style="float: right">Survivor stories</a>
-                <a href="/chatTab.html" class="item"  style="float: right">Want to Chat?</a>
-                <a href="/awareness.html" class="item" style="float: right">Awareness</a>
-                <a href="/seekerdetails/<%=id%>" class="item" style="float: right">Details</a>
+                <a href="/awareness" class="item" style="float: right">Awareness</a>
+               
                 <a href="/contribute.html" class="item"  style="float: right">Contribute</a>
                  <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
@@ -39,19 +45,31 @@
                 </ul>
             </div>
               </div></div>
-              <div class="ui container data">
-            <h1 style="margin-top: 60px"><%=seeker.username.username%></h1>
-            <h3><%=seeker.email%></h3>
-            <h4>How can you seek help?</h4>
-            <p>Thank you for believing in us!</p>
-            <p>Awsar connects every woman in India who is facing violence with legal and counseling help for free. </p>
+              <div class="ui container data top attached" style="font-family: 'georgia';">
 
-            <p>We know how hard it is for a survivor of violence to break the silence and seek help, especially when the violence occurs within the 4 walls of home. The emotionally draining process of searching for help, the monetary costs that it can incur, and the fear of having to reveal one’s identity are only some of the many challenges survivors face. Many remain silent in the face of such daunting hurdles.</p>
+            <h1 class="ui huge header" style="margin-top: 100px; font-family: 'Monoton', cursive;"><%=seeker.username.username%></h1>
+          
+            
+            <p style="font-size: 25px">Be Bold! Be Strong! We're here to help you!</p>
+            <p>Aas lends a ray of hope to every woman in India who is facing violence, is distresssed or in a trouble she cannot discuss with anybody. We offer legal, health-related and social counseling help for free. </p>
 
-            <p>But we believe that every woman should have easy, safe and free access to help so that she can lead a happy, healthy and just life free of violence. We work around the clock to find the most appropriate professional counsellor or lawyer for the survivor.</p> 
-            <p>We believe that that we can definitely help you.</p>
-            <p>Please begin your journey by filling your details in DETAILS tab so that we can connect you to someone who can help.</p>
+                      <p>We strongly believe that every woman should have easy, safe and free access to help so that she can lead a happy, healthy and just life free of violence. We hope that in you some distressed woman finds appropriate advisor for help!</p> 
+            <p>We believe that you can contribute to the growth and upliftment of women around you.</p>
+            <p>Please begin your journey by filling the "About Me" section</p>
+            <p>We will get back to you for contribution as soon as possible</p>
              <div >
+            </div>
+          
+              
+               <a href="/seekerdetails/<%=id%>" class="ui button black" style="margin-left: 170px; width: 30%">About me</a>
+              <a href="/chatTab.html" class="ui button  black" style=" margin-left: 50px;width: 30%">Let's talk things out!</a>
+              <div class="ui container" style="background-color: black; width: 30%">
+
+                <h1 style="font-size: 28px; margin-top: 10px; color: white"><p style="font-size: 28px;">She can help you!</p></h1>
+                <p style="color: white; font-size: 25px; margin-left: 10px"><%=mname%></p>
+                <p style="color: white; font-size: 25px; margin-left: 10px"><%=memail%></p>
+                <p style="color: white; font-size: 25px; margin-left: 10px"><%=mphone%></p>
+              </div>
             </div>
             
 </body>

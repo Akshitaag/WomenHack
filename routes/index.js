@@ -347,7 +347,7 @@ router.get("/mentor",function(req,res){
                Seeker.find({"email":mentor[0].seekeremail},function(err,seeker)
              {
                 if(seeker[0]!=null)
-                  res.render("mentorProf", {mentor: mentor[0] , id: mentor[0]._id,sphone:seeker.phone,semail:seeker.email,sname:mentor.username.username});
+                  res.render("mentorProf", {mentor: mentor[0] , id: mentor[0]._id,sphone:seeker[0].phone,semail:seeker[0].email,sname:seeker[0].username.username});
                 else
                    res.render("mentorProf", {mentor: mentor[0] , id: mentor[0]._id,sphone:null,semail:null,sname:null});
             //    res.render("seekerProf", {seeker: allseekers[0],id:allseekers[0]._id,sphone:seeker.phone,semail:seeker.email,sname:mentor.username.username});
