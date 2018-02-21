@@ -41,7 +41,7 @@ router.post("/mentordetails/:id",function(req,res){
             profession=req.body.profession;
             adhaar=req.body.adhaar;
             contribute=req.body.contribute;
-        var newdata={ username :mfound.username, _id:mfound._id,email:mfound.email,phone:mfound.phone,__v:mfound.__v,profession:profession,adhaar:adhaar,contribute:contribute};
+        var newdata={ username :mfound.username, _id:mfound._id,email:mfound.email,pincode:mfound.pincode,phone:mfound.phone,__v:mfound.__v,profession:profession,adhaar:adhaar,contribute:contribute};
          Mentor.updateOne({_id:mfound._id}, newdata, function(err, res) {
             if(err)
             {
@@ -77,7 +77,7 @@ router.get("/seekerdetails/:id",function(req,res){
 
     res.render("seekerdetails.ejs",{id:req.params.id});
 });
-router.post("/seekerdetails/:id",function(req,res){
+router.post("/seekerdetails/:id",function(req,resuse){
    // console.log(req.body);
     var id =req.params.id ;
     //console.log(id);
@@ -95,7 +95,7 @@ router.post("/seekerdetails/:id",function(req,res){
             problem=req.body.problem;
             helper=req.body.helper;
             share=req.body.share;
-        var newdata={ username :sfound.username, _id:sfound._id,email:sfound.email,phone:sfound.phone,__v:sfound.__v,problem:problem,helper:helper,share:share};
+        var newdata={ username :sfound.username, _id:sfound._id,email:sfound.email,pincode:sfound.pincode,phone:sfound.phone,__v:sfound.__v,problem:problem,helper:helper,share:share};
          Seeker.updateOne({_id:sfound._id}, newdata, function(err, res) {
             if(err)
             {
@@ -104,6 +104,60 @@ router.post("/seekerdetails/:id",function(req,res){
             else
             {
                  console.log("updated");
+                 Mentor.find({"profession":helper},function(err,mentor)
+                {
+                    if(err)
+                    {
+                      console.log(err);
+                    }
+                    else
+                    {  
+                      console.log("here");
+                      console.log(mentor);
+                      var num=sfound.pincode;
+                      var curr = mentor[0].pincode;
+                      var index=0;
+                      
+                      for(var i=1;i<mentor.length;++i)
+                      {
+                        if ( Math.abs(num - mentor[i].pincode) < Math.abs(num - curr))
+                        {
+                          curr = mentor[i].pincode
+                          index=i;
+                        }
+                      }
+                      console.log(curr);
+                      console.log(mentor[index]);
+                      var m=mentor[index];
+                      var newdata1={ mentoremail:mentor[index].email,username :sfound.username, _id:sfound._id,email:sfound.email,pincode:sfound.pincode,phone:sfound.phone,__v:sfound.__v,problem:problem,helper:helper,share:share};
+                        Seeker.updateOne({_id:sfound._id}, newdata1, function(err, res) {
+                          if(err)
+                          {
+                            console.log(err);
+                          }
+                          else
+                          {
+                             m["seekeremail"]=sfound.email;
+                          
+                        console.log(m);
+                        Mentor.updateOne({_id:m._id},m, function(err, res) {
+                          if(err)
+                          {
+                            console.log(err);
+                          }
+                          else
+                          {
+                            resuse.render("seekerProf", {seeker: sfound,id:sfound._id,mphone:m.phone,memail:m.email,mname:m.username.username});
+                          }
+                        });
+                        
+                          }
+                        });
+
+                     // res.render("mentorProf", {mentor: mentor[0] , id: mentor[0]._id});
+                  }
+                });
+
             }
       
         });
@@ -180,7 +234,7 @@ router.post("/register", function(req, res){
             {
                 role="ngo";
             }
-            var newUser = new User({email: req.body.email,username: req.body.username,role:role,phone:req.body.phone});
+            var newUser = new User({email: req.body.email,username: req.body.username,pincode:req.body.pincode,role:role,phone:req.body.phone});
     
    // console.log(newUser.role);
     User.register(newUser, req.body.password, function(err, user){
@@ -199,7 +253,7 @@ router.post("/register", function(req, res){
             };
             if(req.body.role.seeker!=undefined)
             {
-                 var seeker = new Seeker({email: user.email,phone:user.phone,username:username});
+                 var seeker = new Seeker({email: user.email,phone:user.phone,username:username,pincode:user.pincode});
                 seeker.save(function(err){
             if(!err){
                 console.log("Saved");
@@ -214,7 +268,7 @@ router.post("/register", function(req, res){
             }
             else if(req.body.role.mentor!=undefined)
             {
-                 var mentor = new Mentor({email: user.email,phone:user.phone,username:username});
+                 var mentor = new Mentor({email: user.email,phone:user.phone,username:username,pincode:user.pincode});
                 mentor.save(function(err){
             if(!err){
                 console.log("Saved");
@@ -229,7 +283,7 @@ router.post("/register", function(req, res){
             }
             else 
             {
-                var ngo = new Ngo({email: user.email,phone:user.phone,username:username});
+                var ngo = new Ngo({email: user.email,phone:user.phone,username:username,pincode:user.pincode});
                 ngo.save(function(err){
             if(!err){
                 console.log("Saved");
@@ -263,7 +317,15 @@ router.get("/seeker",function(req,res){
        {
             console.log("here");
             console.log(allseekers);
-            res.render("seekerProf", {seeker: allseekers[0],id:allseekers[0]._id});
+             Mentor.find({"email":allseekers[0].mentoremail},function(err,mentor)
+             {
+                console.log(mentor);
+                if(mentor[0]!=null)
+                  res.render("seekerProf", {seeker: allseekers[0],id:allseekers[0]._id,mphone:mentor[0].phone,memail:mentor[0].email,mname:mentor[0].username.username});
+                else
+                  res.render("seekerProf", {seeker: allseekers[0],id:allseekers[0]._id,mphone:null,memail:null,mname:null});
+             });
+            
        }
    });
       
@@ -282,7 +344,15 @@ router.get("/mentor",function(req,res){
        {
             console.log("here");
             console.log(mentor);
-            res.render("mentorProf", {mentor: mentor[0] , id: mentor[0]._id});
+               Seeker.find({"email":mentor[0].seekeremail},function(err,seeker)
+             {
+                if(seeker[0]!=null)
+                  res.render("mentorProf", {mentor: mentor[0] , id: mentor[0]._id,sphone:seeker.phone,semail:seeker.email,sname:mentor.username.username});
+                else
+                   res.render("mentorProf", {mentor: mentor[0] , id: mentor[0]._id,sphone:null,semail:null,sname:null});
+            //    res.render("seekerProf", {seeker: allseekers[0],id:allseekers[0]._id,sphone:seeker.phone,semail:seeker.email,sname:mentor.username.username});
+             });
+            
        }
    });
    // res.render("agroProf", {mentor: req.user});

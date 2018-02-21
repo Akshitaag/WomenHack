@@ -8,7 +8,12 @@ var mentorSchema= new mongoose.Schema({
         required: true
     },
     pincode: {
-        type: String
+        type: Number,
+        default: 110018
+    },
+     seekeremail:
+    {
+        type:String
     },
      phone: {
         type: String
