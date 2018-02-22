@@ -1,5 +1,7 @@
 # Aas-WomenHack
 
+Aas is live at : https://vast-woodland-33701.herokuapp.com/ 
+
 ## SITUATION:
 Crimes against women are consistently escalating to reach the alarming rates of 39 every hour in our country, India. “Cruelty by husband or his relatives” was the most reported crime against women, accounting for 33% of all crimes in 2016. Of 39,068 rape victims in 2016, 43% were girls below 18 years. Offenders were known to the victim in 95% reported cases. Of these, 29% were “neighbours”, “known persons on promise to marry the victim” (27%) and “other known persons”(30%).
 
